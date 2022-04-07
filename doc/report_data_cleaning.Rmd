@@ -1,0 +1,15 @@
+---
+title: "data_cleaning_report.Rmd"
+author: "Elena Krismer"
+date: "4/7/2022"
+output: html_document
+---
+
+Statistics Info about cleaned data
+
+
+
+
+
+
+

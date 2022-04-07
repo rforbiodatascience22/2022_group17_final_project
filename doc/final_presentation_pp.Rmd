@@ -1,0 +1,35 @@
+---
+title: "final_presentation_pp"
+author: "Elena Krismer"
+date: "4/7/2022"
+output: powerpoint_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Content
+
+- Intro to dataset
+- Data cleaniing
+- Modeling
+- ...
+
+## Introduction
+
+Intro about our data
+
+## Data cleaning
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
