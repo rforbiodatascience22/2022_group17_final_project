@@ -12,20 +12,28 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Content
 
-- Intro to dataset
+- Introduction to dataset
 - Data cleaniing
 - Modeling
 - ...
 
 ## Introduction
 
-Intro about our data
+*Longitudinal study with 306 COVID-19 patients and 78 symptomatic controls
+*Identifying immune and non-immune proteins linked to COVID - 19
+
+![fig](fig/publication_title.png)
+
 
 ## Data cleaning
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
+*Data:
+  - Metadata: `r data_overview["n_patients"]` patients  with clinical information
+  - Olink Proteomics: `r n_proteins` unique proteins
+
+*Not all samples passed the Quality Control, those were removed:
+`r data_overview["QC"]``
+
 
 ## Slide with Plot
 
