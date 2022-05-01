@@ -30,3 +30,32 @@ boxplot_inflammatory_markers <- merge_df %>%
   facet_wrap(~UniProt, scale = "free_y") +
   theme_light() +
   theme(axis.title.x = element_blank())
+
+#--------------------------------------------------------------------------------
+# Heatmap of Inflammation Panel on day 0
+#--------------------------------------------------------------------------------
+
+heatmap_data <- merge_df %>%
+  filter(Timepoint == "D0", Panel == "Inflammation") %>%
+  select(NPX, UniProt, subject_id) %>%
+  pivot_wider(names_from = UniProt, values_from = NPX, values_fn = mean) %>%
+  column_to_rownames("subject_id") %>% 
+  as.matrix() %>%
+  t() %>% 
+  na.omit() 
+
+label_df <- metadata  %>%
+  filter(subject_id %in% colnames(heatmap_data))
+
+# remove base r
+heatmap_labels <-  ComplexHeatmap::HeatmapAnnotation(
+  "Covid" = label_df$COVID,
+  "Age" = label_df$Age_cat,
+  "Severity" = label_df$Acuity_0
+)
+
+heatmap_inflammation_d0 <- ComplexHeatmap::Heatmap(heatmap_data, 
+                                                   name = "Inflammation Panel",
+                                                   top_annotation = heatmap_labels,
+                                                   show_column_names = FALSE,
+                                                  show_row_names = FALSE)

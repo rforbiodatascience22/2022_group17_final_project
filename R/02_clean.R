@@ -24,8 +24,7 @@ data_overview["n_proteins"] <- proteomics %>%
 # not all samples passed the Quality control, those samples are removed
 data_overview["QC"] <- proteomics %>% 
   select(QC_Warning) %>% 
-  table() %>%
-  as.data.frame()
+  table()
 proteomics %<>% 
   filter(QC_Warning == "PASS") %>%
   drop_na(subject_id)
@@ -34,4 +33,21 @@ proteomics %<>%
 # Join data
 #-------------------------------------------------------------------------------
 
+# not the definition of clean data 
 merge_df <- merge(metadata, proteomics, by = "subject_id")
+
+# clean matrix
+# rows are subjects 
+# values is NPX
+# columns unique proteins
+matrix_d0 <- merge_df %>% 
+  filter(Timepoint == "D0") %>%
+  select(NPX, UniProt, subject_id) %>%
+  pivot_wider(names_from = UniProt, values_from = NPX, values_fn = mean) %>%
+  na.omit()
+
+# NPX, Normalized Protein eXpression, is Olink’s arbitrary unit which is in Log2 
+# scale. It is calculated from Ct values and data pre-processing (normalization) 
+# is performed to minimize both intra- and inter-assay variation. NPX data allows 
+# users to identify changes for individual protein levels across their sample set, 
+# and then use this data to establish protein signatures.
