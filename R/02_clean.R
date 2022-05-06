@@ -25,9 +25,15 @@ data_overview["n_proteins"] <- proteomics %>%
 data_overview["QC"] <- proteomics %>% 
   select(QC_Warning) %>% 
   table()
+
+# the Olink method consists of various assays targeting different biomarkers
+# Inflammation, Oncology, etc...
+# since the dataset is a combination of several panels and one biomarker can be
+# detected by several Assays, we decided to focus on the Inflammation Panel
 proteomics %<>% 
-  filter(QC_Warning == "PASS") %>%
-  drop_na(subject_id)
+  filter(QC_Warning == "PASS", Panel == "Inflammation") %>%
+  drop_na(subject_id) %>%
+  unite("sample_id", subject_id:Timepoint, remove = FALSE)
 
 #-------------------------------------------------------------------------------
 # Join data

@@ -1,6 +1,9 @@
 library(tidyverse)
 library(magrittr)
 library(ComplexHeatmap)
+library(janitor)
+library(ggfortify)
+library(plyr)
 
 source("R/99_proj_func.R")
 source("R/01_load.R")
