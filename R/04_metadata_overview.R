@@ -9,12 +9,14 @@ covid_pos_neg_bar <- metadata %>%
     COVID == 1 ~ "COVID +",
   )) %>%
   ggplot(aes(factor(COVID), color = COVID, fill = COVID)) +
-  geom_bar(stat = "count", position = "dodge", akpha = 0.4) +
-  labs(title = "Study population") +
+  geom_bar(stat = "count", position = "dodge", alpha = 0.9) +
+  labs(title = "Study population")+ 
+  scale_color_manual(values = c("#CF98C8", "#7FC9BA")) +
+  scale_fill_manual(values = c("#CF98C8", "#7FC9BA")) +
   theme_light() +
   theme(axis.title.x = element_blank())
 
-ggsave("results/metadata_overview_covid.jpg")
+ggsave("results/metadata_overview_covid.png")
 
 #-------------------------------------------------------------------------------
 # Violin Plot
@@ -58,9 +60,11 @@ age_distribution_violin <- metadata %>%
   stat_summary(fun.data=mean_sdl,
                  geom="pointrange") +
   labs(title = "Acuity Levels and Age distribution") +
+  scale_color_manual(values = c("#8352A5", "#CF98C8", "#7FC9BA", "#F3828C", "#6694B6")) +
+  scale_fill_manual(values = c("#8352A5", "#CF98C8", "#7FC9BA", "#F3828C", "#6694B6")) +
   theme_light() +
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank())
 
-ggsave("results/metadata_overview_acuity_age.jpg")
+ggsave("results/metadata_overview_acuity_age.png")
 

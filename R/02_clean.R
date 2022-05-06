@@ -13,7 +13,7 @@ data_overview["n_patients"] <- metadata %>%
 # find columns with missing data
 # not all subjects have information regarding different biomarkers ldh,...
 # but we will keep metadata as this as the most important information (subject_id, COVID) is complete
-data_overview["metadata_NA_columns"] <- colSums(is.na(metadata))
+# data_overview["metadata_NA_columns"] <- colSums(is.na(metadata))
 
 data_overview["n_proteins"] <- proteomics %>%
   select(UniProt) %>%
