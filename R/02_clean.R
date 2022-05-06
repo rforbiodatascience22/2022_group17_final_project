@@ -57,3 +57,9 @@ matrix_d0 <- merge_df %>%
 # is performed to minimize both intra- and inter-assay variation. NPX data allows 
 # users to identify changes for individual protein levels across their sample set, 
 # and then use this data to establish protein signatures.
+
+#-------------------------------------------------------------------------------
+# Write data -------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+write_csv(x = merge_df, file = "data/02_merge_df.csv")
+write.csv(x = matrix_d0, file = "data/02_matrix_d0.csv")

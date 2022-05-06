@@ -1,61 +1,49 @@
 # Load libraries ----------------------------------------------------------
+library(ggrepel)
+library(tinyverse)
 library(broom)
+library(tidytext) 
 
 # Define functions --------------------------------------------------------
 source(file = "R/05_analysis.R")
 
-
 # Load data ---------------------------------------------------------------
+metadata_pca <- read_csv(file = "data/01_metadata.csv") %>% 
+  select(subject_id, COVID) %>% 
+  distinct() 
 
+
+matrix_d0_pca <- read_csv(file = "data/02_matrix_d0.csv") %>% 
+  select(subject_id, 2:7) %>% 
+  distinct()
 
 
 # Wrangle data ------------------------------------------------------------
-my_data_clean_aug %>% ...
-
-
-# Model data
-my_data_clean_aug %>% ...
-
+# Join two dataset with "subject_id"
+covid_pca <- merge(metadata_pca, matrix_d0_pca, by = "subject_id")
 
 # Visualise data ----------------------------------------------------------
 
-library(broom)
-
-matrix_d0_scale <- matrix_d0 %>%
+covid_pca1 <- covid_pca %>%
   as_tibble %>% 
-  select(P01579, P05231, P10145, O95786) %>% 
-  prcomp(center = TRUE, scale. = TRUE) 
+  prcomp(center = TRUE, scale. = TRUE)
 
-matrix_d0_scale %>% tidy("pcs")
+covid_pca1 %>% tidy("pcs")
 
-matrix_d0_scale %>% tidy("pcs") %>% 
+covid_pca1 %>% tidy("pcs") %>% 
   ggplot(aes(x = PC, y = percent)) +
   geom_col() +
   theme_bw()
 
-matrix_d0_scale %>% tidy("samples")
+covid_pca1 %>% tidy("samples")
 
+covid_pca1_aug <- covid_pca1 %>% augment(covid_pca)
 
-matrix_d0_scale_aug <- matrix_d0_scale %>% augment(metadata)
-
-matrix_d0_scale_aug %>% 
+covid_pca_result1 <- covid_pca1_aug %>% 
   ggplot(aes(x = .fittedPC1, y = .fittedPC2, colour = "COVID")) +
   geom_point()
 
-######### 
-matrix_d0_scale<- matrix_d0/merge_df %>% 
-  select(P01579, P05231, P10145, O95786) %>% 
-  prcomp(center = TRUE, scale. = TRUE)
-
-autoplot(matrix_d0_scale,
-         data = metadata, colour = factor(metadata$covid),
-         fill = factor(metadata$covid),
-         frame = TRUE,
-         frame.type = "norm"
-) +
-  labs(color = "COVID", fill = "COVID", title = "PCA - Protein Expression of Covid +/- patients at timepoint 0 ")
 ########
 
-# Write data --------------------------------------------------------------
-write_tsv(...)
-ggsave(...)
+# Save plot ---------------------------------------------------------------
+ggsave(file = "results/04_covid_pca_result1.png") 
