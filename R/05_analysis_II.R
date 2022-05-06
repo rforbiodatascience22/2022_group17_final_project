@@ -14,7 +14,7 @@ metadata_pca <- read_csv(file = "data/01_metadata.csv") %>%
 
 
 matrix_d0_pca <- read_csv(file = "data/02_matrix_d0.csv") %>% 
-  select(subject_id, 2:7) %>% 
+  select(subject_id, P01579, P05231, P10145, O95786) %>% 
   distinct()
 
 
