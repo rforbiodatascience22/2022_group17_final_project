@@ -4,6 +4,7 @@ library(ComplexHeatmap)
 library(janitor)
 library(ggfortify)
 library(plyr)
+library(ggrepel)
 
 source("R/99_proj_func.R")
 source("R/01_load.R")
