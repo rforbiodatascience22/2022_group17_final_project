@@ -57,22 +57,85 @@ library("patchwork")
 # Compute the frequency
 library(dplyr)
 counts0 <- descriptive_df %>%
-  group_by(abs_neut_0_cat, BMI_cat) %>%
+  group_by(abs_neut_0_cat) %>%
   summarise(counts = n())
 
 counts3 <- descriptive_df %>%
-  group_by(abs_neut_3_cat, COVID) %>%
+  group_by(abs_neut_3_cat) %>%
   summarise(counts = n())
 
 counts7 <- descriptive_df %>%
-  group_by(abs_neut_7_cat, COVID) %>%
+  group_by(abs_neut_7_cat) %>%
   summarise(counts = n())
 
 absolute_neut_0 <- ggplot(data=counts0, aes(x=abs_neut_0_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
-  labs(x="Absulute neutrophil count day 0", y="counts")+ scale_fill_distiller(palette = "Blues")
+  labs(x="Absulute neutrophil count day 0", y="counts") + scale_fill_brewer(palette = "Blues")
 absolute_neut_3 <- ggplot(data=counts3, aes(x=abs_neut_3_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
-  labs(x="Absulute neutrophil count day 3", y="counts")+ scale_fill_distiller(palette = "Blues")
+  labs(x="Absulute neutrophil count day 3", y="counts") + scale_fill_distiller(palette = "Blues")
 absolute_neut_7 <- ggplot(data=counts7, aes(x=abs_neut_7_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
-  labs(x="Absulute neutrophil count day 7", y="counts")+ scale_fill_distiller(palette = "Blues")
+  labs(x="Absulute neutrophil count day 7", y="counts") + scale_fill_distiller(palette = "Blues")
 
 absolute_neut_0 + absolute_neut_3 + absolute_neut_7
+
+#lymphocytes
+
+descriptive_df <-  descriptive_df  %>%
+  mutate("abs_lymph_0_cat" = case_when(
+    abs_lymph_0_cat == 1 ~ '0-0.49',
+    abs_lymph_0_cat == 2 ~ '0.5-0.99',
+    abs_lymph_0_cat == 3 ~ '1.0-1.49',
+    abs_lymph_0_cat == 4 ~ '1.5-1.99',
+    abs_lymph_0_cat == 5 ~ '2+'
+  ))
+
+descriptive_df <-  descriptive_df  %>%
+  mutate("abs_lymph_3_cat" = case_when(
+    abs_lymph_3_cat == 1 ~ '0-0.49',
+    abs_lymph_3_cat == 2 ~ '0.5-0.99',
+    abs_lymph_3_cat == 3 ~ '1.0-1.49',
+    abs_lymph_3_cat == 4 ~ '1.5-1.99',
+    abs_lymph_3_cat == 5 ~ '2+'
+  ))
+
+descriptive_df <-  descriptive_df  %>%
+  mutate("abs_lymph_0_cat" = case_when(
+    abs_lymph_7_cat == 1 ~ '0-0.49',
+    abs_lymph_7_cat == 2 ~ '0.5-0.99',
+    abs_lymph_7_cat == 3 ~ '1.0-1.49',
+    abs_lymph_7_cat == 4 ~ '1.5-1.99',
+    abs_lymph_7_cat == 5 ~ '2+'
+  ))
+
+
+# Compute the frequency
+library(dplyr)
+counts0 <- descriptive_df %>%
+  group_by(abs_lymph_0_cat) %>%
+  summarise(counts = n())
+
+counts3 <- descriptive_df %>%
+  group_by(abs_lymph_3_cat) %>%
+  summarise(counts = n())
+
+counts7 <- descriptive_df %>%
+  group_by(abs_lymph_7_cat) %>%
+  summarise(counts = n())
+
+absolute_lymph_0 <- ggplot(data=counts0, aes(x=abs_lymph_0_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
+  labs(x="Absulute neutrophil count day 0", y="counts") + scale_fill_brewer(palette = "Blues")
+absolute_lymph_3 <- ggplot(data=counts3, aes(x=abs_lymph_3_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
+  labs(x="Absulute neutrophil count day 3", y="counts") + scale_fill_distiller(palette = "Blues")
+absolute_lymph_7 <- ggplot(data=counts7, aes(x=abs_lymph_7_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
+  labs(x="Absulute neutrophil count day 7", y="counts") + scale_fill_distiller(palette = "Blues")
+
+absolute_lymph_0 + absolute_lymph_3 + absolute_lymph_7
+
+
+
+age_bmi <- descriptive_df %>%
+  group_by(Age_cat, COVID, BMI_cat) %>%
+  summarise(counts = n())
+
+
+age_bmi_plot <- ggplot(data = age_bmi, aes(fill=Age_cat, y=counts, x=COVID)) + geom_boxplot() + facet_wrap(~BMI_cat)
+age_bmi_plot
