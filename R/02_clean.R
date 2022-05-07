@@ -59,7 +59,7 @@ matrix_d0 <- merge_df %>%
 # and then use this data to establish protein signatures.
 
 #-------------------------------------------------------------------------------
-# Write data 
+# Write data -------------------------------------------------------------------
 #-------------------------------------------------------------------------------
 write_csv(x = merge_df, file = "data/02_merge_df.csv")
 write.csv(x = matrix_d0, file = "data/02_matrix_d0.csv")

@@ -48,4 +48,5 @@ pca_age <- autoplot(pca_data,
   scale_fill_manual(values = c("B659F7", "#CF98C8", "#7FC9BA", "#F3828C", "#6694B6")) +
   labs(title = "PCA - Protein Expression of different Age groups") +
   theme_minimal()
+
 ggsave("results/pca_age.png")
