@@ -10,7 +10,7 @@ covid_pos_neg_bar <- metadata %>%
   )) %>%
   ggplot(aes(factor(COVID), color = COVID, fill = COVID)) +
   geom_bar(stat = "count", position = "dodge", alpha = 0.9) +
-  labs(title = "Study population")+ 
+  labs(title = "Study population") + 
   scale_color_manual(values = c("#CF98C8", "#7FC9BA")) +
   scale_fill_manual(values = c("#CF98C8", "#7FC9BA")) +
   theme_light() +
@@ -27,7 +27,7 @@ ggsave("results/metadata_overview_covid.png")
 # 2 = Intubated
 # 3 = Hospitalized, supplementary O2
 # 4 = Hospitalized,  no supplementary O2
-# 5 = Not Hospialziation
+# 5 = No Hospitalziation
 
 # the exact age for each individual is not published so we will cheat here a bit
 # we only have the age categories
@@ -52,8 +52,8 @@ age_distribution_violin <- metadata %>%
     Acuity_max == 1 ~ "Death",
     Acuity_max == 2 ~ "Intubated",
     Acuity_max == 3 ~ "Hospitalized, supplementary O2",
-    Acuity_max == 4 ~ "Hospitalized,  no supplementary O2",
-    Acuity_max == 5 ~ "No Hospialziation"
+    Acuity_max == 4 ~ "Hospitalized, no supplementary O2",
+    Acuity_max == 5 ~ "No Hospitalziation"
   )) %>%
   ggplot(aes(x= Acuity, y = Age, fill = Acuity, color = Acuity)) +
   geom_violin(trim = FALSE, alpha = 0.3) +

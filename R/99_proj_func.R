@@ -52,7 +52,7 @@ precalc_volcano <- function(matrix_d0, metadata, log2_foldchange = TRUE) {
 
   # merge everything in one df
   pvalue_df <- enframe(result) %>%
-    unnest_longer(value) %>%
+    unnest_longer(value) %>%q
     mutate("Protein" = name)
   final_df <- merge(scaled_df, pvalue_df) %>%
     na.omit()
