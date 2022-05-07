@@ -52,4 +52,27 @@ descriptive_df <-  descriptive_df  %>%
     abs_neut_7_cat  == 5 ~ '12+',
   ))
 
+library("patchwork")
 
+# Compute the frequency
+library(dplyr)
+counts0 <- descriptive_df %>%
+  group_by(abs_neut_0_cat, BMI_cat) %>%
+  summarise(counts = n())
+
+counts3 <- descriptive_df %>%
+  group_by(abs_neut_3_cat, COVID) %>%
+  summarise(counts = n())
+
+counts7 <- descriptive_df %>%
+  group_by(abs_neut_7_cat, COVID) %>%
+  summarise(counts = n())
+
+absolute_neut_0 <- ggplot(data=counts0, aes(x=abs_neut_0_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
+  labs(x="Absulute neutrophil count day 0", y="counts")+ scale_fill_distiller(palette = "Blues")
+absolute_neut_3 <- ggplot(data=counts3, aes(x=abs_neut_3_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
+  labs(x="Absulute neutrophil count day 3", y="counts")+ scale_fill_distiller(palette = "Blues")
+absolute_neut_7 <- ggplot(data=counts7, aes(x=abs_neut_7_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
+  labs(x="Absulute neutrophil count day 7", y="counts")+ scale_fill_distiller(palette = "Blues")
+
+absolute_neut_0 + absolute_neut_3 + absolute_neut_7
