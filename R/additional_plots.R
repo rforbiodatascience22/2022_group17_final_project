@@ -182,26 +182,3 @@ absolute_lymph_7 <- ggplot(data=counts7, aes(x=abs_lymph_7_cat, y=counts)) + geo
   labs(x="Absulute neutrophil count day 7", y="counts") + scale_fill_distiller(palette = "Blues")
 
 absolute_lymph_0 + absolute_lymph_3 + absolute_lymph_7
-
-'''
-Symptoms_df <- descriptive_df %>%
-  select(Age_cat, COVID, BMI_cat, Resp_Symp, Fever_Sympt)
-
-age_bmi <- descriptive_df %>%
-  group_by(Age_cat) %>%
-  summarise(counts = n())
-
-age_bmi_plot <- ggplot(data = age_bmi, aes(x=BMI_cat, fill=COVID)) +  geom_bar(position = "dodge") +  
- facet_wrap(~Age_cat) 
-age_bmi_plot
-
-
-Fever_Symp <- ggplot(Symptoms_df, mapping=aes(x=Age_cat, fill=Fever_Sympt)) 
-Resp_Symp <- ggplot(Symptoms_df, mapping=aes(x=Age_cat, fill=Resp_Symp))  
-
-Fever_Symp + Resp_Symp'''
-
-
-
-
-
