@@ -1,6 +1,6 @@
 ---
 title: "final_presentation_pp"
-author: "Elena Krismer, Narong Nuanmuang, Ewelina Holm Bidstrup, Andre Joao Ferreira Fontes"
+author: "Elena Krismer"
 date: "4/7/2022"
 output: powerpoint_presentation
 ---
@@ -13,10 +13,9 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Content
 
 - Introduction to dataset
-- Data cleaning
-- Study population
+- Data cleaniing
 - Modeling
-
+- ...
 
 ## Introduction
 
@@ -40,44 +39,5 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```{r pressure}
 plot(pressure)
-```
-
-## Study Population
-
-```{r eval=FALSE, fig.align='left', include=FALSE, out.width='50%'}
-knitr::include_graphics("../results/metadata_overview_acuity_age.png")
-
-knitr::include_graphics("../results/metadata_overview_covid.png")
-
-```
-
-## Modeling (PCA)
-
-```{r eval=FALSE, fig.align='left', include=FALSE, out.width='50%'}
-knitr::include_graphics("../results/pca_covid.png")
-
-knitr::include_graphics("../results/pca_age.png")
-```
-
-## Modeling (Volcano plot)
-
-```{r eval=FALSE, fig.align='left', include=FALSE, out.width='50%'}
-
-knitr::include_graphics("../results/volcano_plot.png") 
-```
-
-## Modeling (Heatmap)
-
-```{r eval=FALSE, fig.align='left', include=FALSE, out.width='50%'}
-
-knitr::include_graphics("../results/heatmap_inflammation_panel.png") 
-
-```
-
-## Modeling (Boxplot)
-
-```{r eval=FALSE, fig.align='left', include=FALSE, out.width='50%'}
-knitr::include_graphics("../results/boxplot_inflammatory_markers.png")
-
 ```
 

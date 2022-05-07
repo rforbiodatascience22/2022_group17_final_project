@@ -1,6 +1,13 @@
-#-------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 # PCA COVID +/-
-#-------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
+
+pca_data <- matrix_d0 %>%
+  column_to_rownames("subject_id") %>%
+  as_tibble() %>%
+  prcomp(center = TRUE, scale. = TRUE)
+
+
 subject_ids_timepoint0 <- matrix_d0 %>%
   dplyr::select(subject_id) %>%
   as.list() %>%
@@ -31,7 +38,7 @@ pca_covid <- autoplot(pca_data,
   scale_fill_manual(values = c("#CF98C8", "#7FC9BA")) +
   labs(title = "PCA - Protein Expression of COVID +/- Patients") +
   theme_minimal()
-
+ggsave("results/pca_covid.png")
 
 pca_age <- autoplot(pca_data,
   data = pca_metadata,
@@ -41,8 +48,4 @@ pca_age <- autoplot(pca_data,
   scale_fill_manual(values = c("B659F7", "#CF98C8", "#7FC9BA", "#F3828C", "#6694B6")) +
   labs(title = "PCA - Protein Expression of different Age groups") +
   theme_minimal()
-
-# Write data --------------------------------------------------------------
-ggsave("results/pca_covid.png")
 ggsave("results/pca_age.png")
-
