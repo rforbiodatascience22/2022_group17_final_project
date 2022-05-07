@@ -58,8 +58,19 @@ matrix_d0 <- merge_df %>%
 # users to identify changes for individual protein levels across their sample set, 
 # and then use this data to establish protein signatures.
 
+neut_assay <- read.csv(file='data/01_neut_assay.csv', sep = ",")
+
+unique(neut_assay$PublicID_Sample)
+unique(neut_assay$PublicID)
+unique(neut_assay$Day)
+unique(neut_assay$Percent.Neutralization)
+
+#removing nan values
+neut_assay_clean <- na.omit(neut_assay)
+
 #-------------------------------------------------------------------------------
 # Write data -------------------------------------------------------------------
 #-------------------------------------------------------------------------------
 write_csv(x = merge_df, file = "data/02_merge_df.csv")
 write.csv(x = matrix_d0, file = "data/02_matrix_d0.csv")
+write.csv(x = neut_assay_clean, file = "data/02_neut_assay.csv")
