@@ -1,8 +1,10 @@
 ---
-title: "final_presentation_pp"
-author: "Elena Krismer"
+title: "R for BioData Science"
+author: "Elena Krismer, Narong Nuanmuang, Ewelina Holm Bistrup"
 date: "4/7/2022"
-output: powerpoint_presentation
+output:
+  slidy_presentation: default
+  powerpoint_presentation: default
 ---
 
 ```{r setup, include=FALSE}
@@ -12,32 +14,54 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Content
 
-- Introduction to dataset
-- Data cleaniing
-- Modeling
-- ...
+* Introduction to Dataset
+
+Patient medical data (subject_id, age, acuity, …)
+Proteomics (Olink Assay)
+
+* Data Cleaning
+
+* Study Population (Bar plot & Violin plot)
+
+* Modeling (PCA, Volcano plot & Heatmap)
+
+
 
 ## Introduction
 
-*Longitudinal study with 306 COVID-19 patients and 78 symptomatic controls
-*Identifying immune and non-immune proteins linked to COVID - 19
+* Longitudinal study with 306 COVID-19 patients and 78 symptomatic controls
+* Identifying immune and non-immune proteins linked to COVID - 19
 
 ![fig](fig/publication_title.png)
 
+## Introdiction / Study Aim / Methods / Results
+
+* Covid-19 : > 1 million cases
+* Immune dysfunction (hyper- & hypo- immune response)
+* Limited of sample size or narrow set of immune mediators
+* Plasma proteomics 
+
+* To gain insights into underlying disease mechanisms, researchers map proteomics (n=1,472) to specific cell types in the context of relevant clinical phenotypes.
+
+* Plasma collection and processing (in patients (n=306) vs controls = 78)
+* Olink plasma proteomic assays
+* Quality control (Olink)
+
+
+## Olink Assay
 
 ## Data cleaning
 
-*Data:
-  - Metadata: `r data_overview["n_patients"]` patients  with clinical information
-  - Olink Proteomics: `r n_proteins` unique proteins
-
-*Not all samples passed the Quality Control, those were removed:
-`r data_overview["QC"]``
 
 
-## Slide with Plot
 
-```{r pressure}
-plot(pressure)
-```
+## Study Population
+
+## Volcano Plot
+
+## Inflammatory Markers 
+
+## Clustering PCA
+
+## Heatmap
 
