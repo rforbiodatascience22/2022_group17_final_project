@@ -1,6 +1,13 @@
-#-------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 # PCA COVID +/-
-#-------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
+
+pca_data <- matrix_d0 %>%
+  column_to_rownames("subject_id") %>%
+  as_tibble() %>%
+  prcomp(center = TRUE, scale. = TRUE)
+
+
 subject_ids_timepoint0 <- matrix_d0 %>%
   dplyr::select(subject_id) %>%
   as.list() %>%
@@ -31,7 +38,7 @@ pca_covid <- autoplot(pca_data,
   scale_fill_manual(values = c("#CF98C8", "#7FC9BA")) +
   labs(title = "PCA - Protein Expression of COVID +/- Patients") +
   theme_minimal()
-
+ggsave("results/pca_covid.png")
 
 pca_age <- autoplot(pca_data,
   data = pca_metadata,
@@ -78,6 +85,7 @@ pca_metadata <- metadata %>%
   # mutate to factor for color plotting
   mutate(COVID = factor(COVID), Age = factor(Age))
 
+ggsave("results/pca_narong.png")
 pca_covid_4 <- autoplot(pca_data_4,
                         data = pca_metadata,
                         colour = "COVID") +
@@ -98,8 +106,10 @@ pca_age_4 <- autoplot(pca_data_4,
 
 
 # Write data --------------------------------------------------------------
-ggsave("results/pca_covid.png")
-ggsave("results/pca_age.png")
-ggsave("results/pca_covid_4.png")
-ggsave("results/pca_age_4.png")
+
+#ggsave("results/pca_age.png")
+#ggsave("results/pca_covid_4.png")
+#ggsave("results/pca_age_4.png")
+
+#ggsave("results/pca_age.png")
 
