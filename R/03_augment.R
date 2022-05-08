@@ -23,6 +23,7 @@ descriptive_df <-  descriptive_df  %>%
     BMI_cat == 4 ~ "40 severely obese",
     BMI_cat == 5 ~ "unknown"
   ))
+
 descriptive_dfn0 <-  descriptive_df  %>%
   mutate("abs_neut_0_cat" = case_when(
     abs_neut_0_cat == 1 ~ '0-0.99',

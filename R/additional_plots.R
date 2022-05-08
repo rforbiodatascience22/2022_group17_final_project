@@ -64,18 +64,18 @@ counts7 <- descriptive_df7 %>%
   group_by(abs_neut_7_cat) %>%
   dplyr::summarise(counts = n())
 
-absolute_neut_0 <- ggplot(data=counts0, aes(x=abs_neut_0_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
-  labs(x="Absulute neutrophil count day 0", y="counts") + scale_color_manual(values = c("#CF98C8")) +
+absolute_neut_0 <- ggplot(data=counts0, aes(x=abs_neut_0_cat, y=counts)) + geom_bar(position="stack", stat="identity", fill="#CF98C8")+
+  labs(x="Neutrophil count day 0", y="counts") + scale_color_manual(values = c("#CF98C8")) +
   scale_fill_manual(values = c("#CF98C8")) 
-absolute_neut_3 <- ggplot(data=counts3, aes(x=abs_neut_3_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
-  labs(x="Absulute neutrophil count day 3", y="counts") + scale_color_manual(values = c("#CF98C8")) +
+absolute_neut_3 <- ggplot(data=counts3, aes(x=abs_neut_3_cat, y=counts)) + geom_bar(position="stack", stat="identity", fill="#CF98C8")+
+  labs(x="Neutrophil count day 3", y="counts") + scale_color_manual(values = c("#CF98C8")) +
   scale_fill_manual(values = c("#CF98C8")) 
-absolute_neut_7 <- ggplot(data=counts7, aes(x=abs_neut_7_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
-  labs(x="Absulute neutrophil count day 7", y="counts") + scale_color_manual(values = c("#CF98C8")) +
+absolute_neut_7 <- ggplot(data=counts7, aes(x=abs_neut_7_cat, y=counts)) + geom_bar(position="stack", stat="identity", fill="#CF98C8")+
+  labs(x="Neutrophil count day 7", y="counts") + scale_color_manual(values = c("#CF98C8")) +
   scale_fill_manual(values = c("#CF98C8")) 
 
 absolute_neut_0 + absolute_neut_3 + absolute_neut_7
-
+ggsave("results/absolute_neutrophil_count.png")
 #-------------------------------------------------------------------------------
 # Barplot Absolute lymphocytes count
 #-------------------------------------------------------------------------------
@@ -92,14 +92,15 @@ counts7 <- descriptive_df7 %>%
   group_by(abs_lymph_7_cat) %>%
   dplyr::summarise(counts = n())
 
-absolute_lymph_0 <- ggplot(data=counts0, aes(x=abs_lymph_0_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
-  labs(x="Absulute lymphocytes count day 0", y="counts") + scale_color_manual(values = c("#7FC9BA")) +
+absolute_lymph_0 <- ggplot(data=counts0, aes(x=abs_lymph_0_cat, y=counts)) + geom_bar(position="stack", stat="identity", fill="#7FC9BA")+
+  labs(x="Lymphocyte count day 0", y="counts") + scale_color_manual(values = c("#7FC9BA")) +
   scale_fill_manual(values = c("#7FC9BA")) 
-absolute_lymph_3 <- ggplot(data=counts3, aes(x=abs_lymph_3_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
-  labs(x="Absulute lymphocytes count day 3", y="counts") + scale_color_manual(values = c("#7FC9BA")) +
+absolute_lymph_3 <- ggplot(data=counts3, aes(x=abs_lymph_3_cat, y=counts)) + geom_bar(position="stack", stat="identity", fill="#7FC9BA")+
+  labs(x="Lymphocyte count day 3", y="counts") + scale_color_manual(values = c("#7FC9BA")) +
   scale_fill_manual(values = c("#7FC9BA")) 
-absolute_lymph_7 <- ggplot(data=counts7, aes(x=abs_lymph_7_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
-  labs(x="Absulute lymphocytes count day 7", y="counts") + scale_color_manual(values = c("#7FC9BA")) +
+absolute_lymph_7 <- ggplot(data=counts7, aes(x=abs_lymph_7_cat, y=counts)) + geom_bar(position="stack", stat="identity", fill="#7FC9BA")+
+  labs(x="Lymphocyte count day 7", y="counts") + scale_color_manual(values = c("#7FC9BA")) +
   scale_fill_manual(values = c("#7FC9BA"))
 
 absolute_lymph_0 + absolute_lymph_3 + absolute_lymph_7
+ggsave("results/absolute_lymphocyte_count.png")
