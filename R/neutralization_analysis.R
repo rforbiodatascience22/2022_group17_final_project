@@ -51,6 +51,15 @@ ggsave("results/acuity_vs_neutrlvl.png")
 #-------------------------------------------------------------------------------
 # Boxplots neutralisation level in patients with different severity 
 #-------------------------------------------------------------------------------
+# Proportion of patients with neutralization levels over time and by severity level
+Acuity_df <- total %>%
+  mutate(Severity = case_when(
+    Acuity_max == 1 ~ "Severe",
+    Acuity_max == 2 ~ "Severe",
+    Acuity_max == 3 ~ "Non - Severe",
+    Acuity_max == 4 ~ "Non - Severe",
+    Acuity_max == 5 ~ "Non - Severe"
+  ))
 severity_df <- filter(Acuity_df, Day %in% c('0', '3', '7'))
 
 neutralisation_levels <- severity_df %>% mutate(Neutralisation = case_when(
@@ -66,16 +75,6 @@ neut_severity1 <- ggplot(data = severity_df , mapping=aes(x = Day, y = Percent.N
   theme_minimal()
 neut_severity1
 ggsave("results/neutralisationsevere_nonsevere.png")
-
-# Proportion of patients with neutralization levels over time and by severity level
-Acuity_df <- total %>%
-  mutate(Severity = case_when(
-    Acuity_max == 1 ~ "Severe",
-    Acuity_max == 2 ~ "Severe",
-    Acuity_max == 3 ~ "Non - Severe",
-    Acuity_max == 4 ~ "Non - Severe",
-    Acuity_max == 5 ~ "Non - Severe"
-  ))
 
 severe_df <- filter(neutralisation_levels, Severity == 'Severe') %>%
   group_by(subject_id, Day, Neutralisation) 
