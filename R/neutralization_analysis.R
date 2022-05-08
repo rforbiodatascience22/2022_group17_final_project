@@ -9,6 +9,7 @@ scat0 <- ggplot(data=neut_d0, aes(x=COVID, y=Percent.Neutralization)) + geom_poi
   ylab('Neutralisation level [%]') + 
   xlab('Covid Status')
 scat0
+ggsave("results/neutralisationlvl_covid0.png")
 
 scat3 <- ggplot(data=neut_d3, aes(x=COVID, y=Percent.Neutralization)) + geom_point(color='darkblue') + geom_boxplot(color='darkred') +
   coord_fixed()+
@@ -16,6 +17,7 @@ scat3 <- ggplot(data=neut_d3, aes(x=COVID, y=Percent.Neutralization)) + geom_poi
   ylab('Neutralisation level [%]') + 
   xlab('Covid Status')
 scat3
+ggsave("results/neutralisationlvl_covid3.png")
 
 scat7 <- ggplot(data=neut_d7, aes(x=COVID, y=Percent.Neutralization)) + geom_point(color='darkblue') + geom_boxplot(color='darkred') +
   coord_fixed()+
@@ -23,6 +25,8 @@ scat7 <- ggplot(data=neut_d7, aes(x=COVID, y=Percent.Neutralization)) + geom_poi
   ylab('Neutralisation level [%]') + 
   xlab('Covid Status')
 scat7
+ggsave("results/neutralisationlvl_covid7.png")
+
 
 #Acuity vs neutralization levrl
 Acuity_p <- ggplot(data = Acuity_df, mapping=aes(x=COVID, y=Percent.Neutralization, fill=Acuity_max)) + geom_boxplot()+
@@ -30,7 +34,9 @@ Acuity_p <- ggplot(data = Acuity_df, mapping=aes(x=COVID, y=Percent.Neutralizati
   ylab('Neutralisation level [%]') + 
   xlab('Covid Status')
  Acuity_p
+ ggsave("results/acuity_vs_neutrlvl.png")
 
+ 
 #Neutralization level in non-severe patients
 severity_df <- filter(Acuity_df, Day %in% c('0', '3', '7'))
 unique(severity_df$Day) 
@@ -40,6 +46,7 @@ neut_severity1 <- ggplot(data = severity_df , mapping=aes(x = Day, y = Percent.N
   ylab('Neutralisation level [%]') +
   theme_dark()
 neut_severity1
+ggsave("results/neutralisationsevere_nonsevere.png")
 
 # Proportion of patients with neutralization levels over time and by severity level
 severe_df <- filter(neutralisation_levels, Severity == 'Severe') %>%
@@ -66,6 +73,6 @@ neut_non_severe <- ggplot(data = severe_df , mapping=aes(x = Day, fill = Neutral
         axis.ticks.y = element_blank(),
   )
 neut_severe + neut_non_severe 
- 
+ggsave("results/neutralisationlvl_propoirtions.png") 
 
 

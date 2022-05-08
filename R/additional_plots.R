@@ -13,6 +13,8 @@ pl1 = ggplot(data = grouped_by_patientid,
   theme(legend.position = "bottom")
 
 pl1
+ggsave("results/heart_disease_occurences.png")
+
 
 pl2 = ggplot(data = grouped_by_patientid,
              aes(x = Age_cat,
@@ -26,6 +28,8 @@ pl2 = ggplot(data = grouped_by_patientid,
   theme_classic(base_size = 12) +
   theme(legend.position = "bottom")
 pl2
+ggsave("results/lung_disease_occurences.png")
+
 
 pl3 = ggplot(data = merge_df,
              aes(x = Age_cat,
@@ -39,7 +43,7 @@ pl3 = ggplot(data = merge_df,
   theme_classic(base_size = 12) +
   theme(legend.position = "bottom")
 pl3
-
+ggsave("results/respiratory_symptoms_occurences.png")
 
 # Compute the frequency
 counts0 <- descriptive_df7 %>%
