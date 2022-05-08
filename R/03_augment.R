@@ -88,17 +88,11 @@ Acuity_df <- total %>%
     Acuity_max == 5 ~ "Non - Severe"
   ))
 
-Acuity_df <- Acuity_df %>% mutate(Acuity_max = case_when(
+Acuity_df <- total %>% mutate(Acuity_max = case_when(
   Acuity_max == 1 ~ "Death",
   Acuity_max == 2 ~ "Intubated",
-  Acuity_max == 3 ~ "Hospitalized, supplementary O2",
-  Acuity_max == 4 ~ "Hospitalized,  no supplementary O2",
+  Acuity_max == 3 ~ "Hospitalized,supp.O2",
+  Acuity_max == 4 ~ "Hospitalized,no supp. O2",
   Acuity_max == 5 ~ "No Hospialziation"
 ))
 
-neutralisation_levels <- severity_df %>% mutate(Neutralisation = case_when(
-  Percent.Neutralization < 0.25 ~ "0-25",
-  Percent.Neutralization >= 0.25 & Percent.Neutralization < 0.50 ~ "25-50",
-  Percent.Neutralization >= 0.50 & Percent.Neutralization < 0.75 ~ "50-75",
-  Percent.Neutralization >= 0.75 & Percent.Neutralization <= 1 ~ "75-100"
-))
