@@ -80,15 +80,6 @@ descriptive_df7 <-  descriptive_df3  %>%
 
 total <- merge(descriptive_df, neut_assay_clean, by="subject_id")
 
-Acuity_df <- total %>%
-  mutate(Severity = case_when(
-    Acuity_max == 1 ~ "Severe",
-    Acuity_max == 2 ~ "Severe",
-    Acuity_max == 3 ~ "Non - Severe",
-    Acuity_max == 4 ~ "Non - Severe",
-    Acuity_max == 5 ~ "Non - Severe"
-  ))
-
 Acuity_df <- total %>% mutate(Acuity_max = case_when(
   Acuity_max == 1 ~ "Death",
   Acuity_max == 2 ~ "Intubated",
