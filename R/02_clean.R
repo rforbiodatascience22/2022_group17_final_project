@@ -69,7 +69,8 @@ unique(neut_assay$Percent.Neutralization)
 neut_assay_clean <- na.omit(neut_assay)
 
 #changing the subject id variable name
-neut_assay_clean = rename(neut_assay_clean, subject_id = PublicID)
+neut_assay_clean <- neut_assay_clean %>%
+  dplyr::rename(subject_id = PublicID)
 
 
 #-------------------------------------------------------------------------------
