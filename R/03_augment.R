@@ -23,7 +23,7 @@ descriptive_df <-  descriptive_df  %>%
     BMI_cat == 4 ~ "40 severely obese",
     BMI_cat == 5 ~ "unknown"
   ))
-descriptive_df <-  descriptive_df  %>%
+descriptive_dfn0 <-  descriptive_df  %>%
   mutate("abs_neut_0_cat" = case_when(
     abs_neut_0_cat == 1 ~ '0-0.99',
     abs_neut_0_cat == 2 ~ '1.0-3.99',
@@ -32,7 +32,7 @@ descriptive_df <-  descriptive_df  %>%
     abs_neut_0_cat == 5 ~ '12+'
   ))
 
-descriptive_df <-  descriptive_df  %>%
+descriptive_dfn3 <-  descriptive_dfn0  %>%
   mutate("abs_neut_3_cat" = case_when(
     abs_neut_3_cat  == 1 ~ '0-0.99',
     abs_neut_3_cat  == 2 ~ '1.0-3.99',
@@ -41,7 +41,7 @@ descriptive_df <-  descriptive_df  %>%
     abs_neut_3_cat  == 5 ~ '12+'
   ))
 
-descriptive_df <-  descriptive_df  %>%
+descriptive_dfn7 <-  descriptive_dfn3  %>%
   mutate("abs_neut_7_cat" = case_when(
     abs_neut_7_cat  == 1 ~ '0-0.99',
     abs_neut_7_cat  == 2 ~ '1.0-3.99',
@@ -50,7 +50,7 @@ descriptive_df <-  descriptive_df  %>%
     abs_neut_7_cat  == 5 ~ '12+',
   ))
 
-descriptive_df <-  descriptive_df  %>%
+descriptive_df0 <-  descriptive_dfn7  %>%
   mutate("abs_lymph_0_cat" = case_when(
     abs_lymph_0_cat == 1 ~ '0-0.49',
     abs_lymph_0_cat == 2 ~ '0.5-0.99',
@@ -59,7 +59,7 @@ descriptive_df <-  descriptive_df  %>%
     abs_lymph_0_cat == 5 ~ '2+'
   ))
 
-descriptive_df <-  descriptive_df  %>%
+descriptive_df3 <-  descriptive_df0  %>%
   mutate("abs_lymph_3_cat" = case_when(
     abs_lymph_3_cat == 1 ~ '0-0.49',
     abs_lymph_3_cat == 2 ~ '0.5-0.99',
@@ -68,7 +68,7 @@ descriptive_df <-  descriptive_df  %>%
     abs_lymph_3_cat == 5 ~ '2+'
   ))
 
-descriptive_df <-  descriptive_df  %>%
+descriptive_df7 <-  descriptive_df3  %>%
   mutate("abs_lymph_0_cat" = case_when(
     abs_lymph_7_cat == 1 ~ '0-0.49',
     abs_lymph_7_cat == 2 ~ '0.5-0.99',

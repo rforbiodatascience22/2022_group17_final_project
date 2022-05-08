@@ -42,15 +42,15 @@ pl3
 
 
 # Compute the frequency
-counts0 <- descriptive_df %>%
+counts0 <- descriptive_df7 %>%
   group_by(abs_neut_0_cat) %>%
   summarise(counts = n())
 
-counts3 <- descriptive_df %>%
+counts3 <- descriptive_df7 %>%
   group_by(abs_neut_3_cat) %>%
   summarise(counts = n())
 
-counts7 <- descriptive_df %>%
+counts7 <- descriptive_df7 %>%
   group_by(abs_neut_7_cat) %>%
   summarise(counts = n())
 
@@ -65,15 +65,15 @@ absolute_neut_0 + absolute_neut_3 + absolute_neut_7
 
 # Compute the frequency
 
-counts0 <- descriptive_df %>%
+counts0 <- descriptive_df7 %>%
   group_by(abs_lymph_0_cat) %>%
   summarise(counts = n())
 
-counts3 <- descriptive_df %>%
+counts3 <- descriptive_df7 %>%
   group_by(abs_lymph_3_cat) %>%
   summarise(counts = n())
 
-counts7 <- descriptive_df %>%
+counts7 <- descriptive_df7 %>%
   group_by(abs_lymph_7_cat) %>%
   summarise(counts = n())
 
