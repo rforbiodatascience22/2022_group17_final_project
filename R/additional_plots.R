@@ -2,8 +2,8 @@
 #Histogram Pre-existing conditions occurences
 #-------------------------------------------------------------------------------
 
-grouped_by_patientid = merge_df %>% group_by(subject_id, Age_cat, HEART, LUNG, Resp_Symp) %>%
-  summarise(Count=sum(subject_id))
+grouped_by_patientid = merge_df %>% group_by(subject_id, Age_cat, HEART, LUNG, Resp_Symp)# %>%
+ # summarise(Count=sum(subject_id))
 
 pl1 = ggplot(data = grouped_by_patientid,
              aes(x = Age_cat,
@@ -54,15 +54,15 @@ ggsave("results/respiratory_symptoms_occurences.png")
 # Compute the frequency
 counts0 <- descriptive_df7 %>%
   group_by(abs_neut_0_cat) %>%
-  summarise(counts = n())
+  dplyr::summarise(counts = n())
 
 counts3 <- descriptive_df7 %>%
   group_by(abs_neut_3_cat) %>%
-  summarise(counts = n())
+  dplyr::summarise(counts = n())
 
 counts7 <- descriptive_df7 %>%
   group_by(abs_neut_7_cat) %>%
-  summarise(counts = n())
+  dplyr::summarise(counts = n())
 
 absolute_neut_0 <- ggplot(data=counts0, aes(x=abs_neut_0_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
   labs(x="Absulute neutrophil count day 0", y="counts") + scale_color_manual(values = c("#CF98C8")) +
@@ -82,15 +82,15 @@ absolute_neut_0 + absolute_neut_3 + absolute_neut_7
 
 counts0 <- descriptive_df7 %>%
   group_by(abs_lymph_0_cat) %>%
-  summarise(counts = n())
+  dplyr::summarise(counts = n())
 
 counts3 <- descriptive_df7 %>%
   group_by(abs_lymph_3_cat) %>%
-  summarise(counts = n())
+  dplyr::summarise(counts = n())
 
 counts7 <- descriptive_df7 %>%
   group_by(abs_lymph_7_cat) %>%
-  summarise(counts = n())
+  dplyr::summarise(counts = n())
 
 absolute_lymph_0 <- ggplot(data=counts0, aes(x=abs_lymph_0_cat, y=counts)) + geom_bar(position="stack", stat="identity")+
   labs(x="Absulute lymphocytes count day 0", y="counts") + scale_color_manual(values = c("#7FC9BA")) +
