@@ -1,9 +1,10 @@
 ---
 title: "R for BioData Science"
-author: "Elena Krismer, Narong Nuanmuang, Ewelina Holm Bistrup"
+author: "Elena Krismer, Narong Nuanmuang, Ewelina Holm Bidstrup"
 date: "4/7/2022"
 output:
   slidy_presentation: default
+  ioslides_presentation: default
   powerpoint_presentation: default
 ---
 
@@ -32,9 +33,11 @@ Proteomics (Olink Assay)
 * Longitudinal study with 306 COVID-19 patients and 78 symptomatic controls
 * Identifying immune and non-immune proteins linked to COVID - 19
 
-![fig](fig/publication_title.png)
+```{r}
+knitr::include_graphics("fig/publication_title.png")
+```
 
-## Introdiction / Study Aim / Methods / Results
+## Study Aim / Methods / Results
 
 * Covid-19 : > 1 million cases
 * Immune dysfunction (hyper- & hypo- immune response)
@@ -47,21 +50,66 @@ Proteomics (Olink Assay)
 * Olink plasma proteomic assays
 * Quality control (Olink)
 
-
+ 
 ## Olink Assay
+* Protein biomarker panels:
+early diagnosis, prognosis, patient stratification 
+or monitoring treatment response
+* Proximity Extension Assay (PEA)
+* Fluorescence intensity
+* Panels i.e. Inflammation
+![fig](fig/olink.png)
 
 ## Data cleaning
 
-
+```{r}
+#| out.width = '80%', 
+#| include = TRUE
+knitr::include_graphics("fig/data_cleaning_schme.png")
+```
 
 
 ## Study Population
 
+```{r}
+knitr::include_graphics("../results/metadata_overview_covid.png")
+knitr::include_graphics("../results/metadata_overview_acuity_age.png")
+```
+
+
 ## Volcano Plot
+
+```{r}
+#| fig.cap = "Volcano Plot: COVID postive vs. COVID negative, baseline",
+#| out.width = '50%', 
+#| fig.align = 'center',
+#| include = TRUE
+knitr::include_graphics("../results/volcano_plot.png") 
+```
 
 ## Inflammatory Markers 
 
+```{r}
+#| fig.cap = "Inflammatory Markers: COVID postive vs. COVID negative, baseline",
+#| include = TRUE,
+#| fig.align = 'center'
+knitr::include_graphics("../results/boxplot_inflammatory_markers.png")
+```
+
 ## Clustering PCA
 
+```{r}
+knitr::include_graphics("../results/pca_covid.png")
+knitr::include_graphics("../results/pca_age.png")
+```
+
 ## Heatmap
+
+```{r}
+#| fig.cap = "Heatmap Inflammation Panel, Baseline Samples",
+#| out.width = '40%', 
+#| fig.align = 'center',
+#| include = TRUE
+knitr::include_graphics("../results/heatmap_inflammation_panel.png") 
+```
 
