@@ -1,12 +1,3 @@
-#
-total <- merge(merge_df, neut_assay_clean, by="subject_id")
-
-total <- total %>%
-  mutate(COVID = case_when(
-    COVID == 0 ~ "Negative",
-    COVID == 1 ~ "Positive",
-  ))
-
 #neutralisation level vs covid status
 neut_d0 <- total %>% filter(Day==0)
 neut_d3 <- total %>% filter(Day==3)
@@ -33,13 +24,14 @@ scat7 <- ggplot(data=neut_d7, aes(x=COVID, y=Percent.Neutralization)) + geom_poi
   xlab('Covid Status')
 scat7
 
-
+#Acuity vs neutralization levrl
 Acuity_p <- ggplot(data = Acuity_df, mapping=aes(x=COVID, y=Percent.Neutralization, fill=Acuity_max)) + geom_boxplot()+
   theme(legend.position = "bottom") + labs(title = "Neutralisation level in patients", subtitle = "Comparison of neutralisation in case of different hospitalisation levels") +
   ylab('Neutralisation level [%]') + 
   xlab('Covid Status')
  Acuity_p
 
+#Neutralization level in non-severe patients
 severity_df <- filter(Acuity_df, Day %in% c('0', '3', '7'))
 unique(severity_df$Day) 
 neut_severity1 <- ggplot(data = severity_df , mapping=aes(x = Day, y = Percent.Neutralization, fill = Severity)) + 
@@ -47,18 +39,9 @@ neut_severity1 <- ggplot(data = severity_df , mapping=aes(x = Day, y = Percent.N
   labs(title = "Boxplots of neutralization levels in non-severe and severe patients over time") +
   ylab('Neutralisation level [%]') +
   theme_dark()
-
 neut_severity1
 
 # Proportion of patients with neutralization levels over time and by severity level
-
-neutralisation_levels <- severity_df %>% mutate(Neutralisation = case_when(
-  Percent.Neutralization < 0.25 ~ "0-25",
-  Percent.Neutralization >= 0.25 & Percent.Neutralization < 0.50 ~ "25-50",
-  Percent.Neutralization >= 0.50 & Percent.Neutralization < 0.75 ~ "50-75",
-  Percent.Neutralization >= 0.75 & Percent.Neutralization <= 1 ~ "75-100"
-))
-
 severe_df <- filter(neutralisation_levels, Severity == 'Severe') %>%
   group_by(subject_id, Day, Neutralisation) 
 
@@ -69,6 +52,7 @@ neut_severe <- ggplot(data = severe_df , mapping = aes(x = Day, fill = Neutralis
   geom_bar(position = 'stack') +
   theme_dark() +
   ylab('Proportion of patients') +
+  labs(title = 'Severe') +
   theme(axis.text.y=element_blank(),  #remove y axis labels
         axis.ticks.y=element_blank(),
         legend.position = "none"
@@ -77,10 +61,10 @@ neut_non_severe <- ggplot(data = severe_df , mapping=aes(x = Day, fill = Neutral
   geom_bar(position = 'stack') +
   theme_dark() +
   ylab('') +
-  theme(axis.text.y=element_blank(),  
-        axis.ticks.y=element_blank(),
+  labs(title = 'Non-severe') +
+  theme(axis.text.y = element_blank(),  
+        axis.ticks.y = element_blank(),
   )
-
 neut_severe + neut_non_severe 
  
 
