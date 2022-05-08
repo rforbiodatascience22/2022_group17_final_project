@@ -3,14 +3,14 @@
 # Barplot COVID - / COVID +
 #-------------------------------------------------------------------------------
 
-covid_pos_neg_bar <- metadata %>% 
+covid_pos_neg_bar <- metadata %>%
   mutate(COVID = case_when(
     COVID == 0 ~ "COVID -",
     COVID == 1 ~ "COVID +",
   )) %>%
   ggplot(aes(factor(COVID), color = COVID, fill = COVID)) +
   geom_bar(stat = "count", position = "dodge", alpha = 0.9) +
-  labs(title = "Study population")+ 
+  labs(title = "Study population") +
   scale_color_manual(values = c("#CF98C8", "#7FC9BA")) +
   scale_fill_manual(values = c("#CF98C8", "#7FC9BA")) +
   theme_light() +
@@ -39,7 +39,7 @@ ggsave("results/metadata_overview_covid.png")
 # 4 = 65-79
 # 5 = 80 +
 
-age_distribution_violin <- metadata %>% 
+age_distribution_violin <- metadata %>%
   select(Age_cat, Acuity_max) %>%
   mutate("Age" = case_when(
     Age_cat == 1 ~ sample(20:34, 1),
@@ -55,16 +55,19 @@ age_distribution_violin <- metadata %>%
     Acuity_max == 4 ~ "Hospitalized,  no supplementary O2",
     Acuity_max == 5 ~ "No Hospialziation"
   )) %>%
-  ggplot(aes(x= Acuity, y = Age, fill = Acuity, color = Acuity)) +
+  ggplot(aes(x = Acuity, y = Age, fill = Acuity, color = Acuity)) +
   geom_violin(trim = FALSE, alpha = 0.3) +
-  stat_summary(fun.data=mean_sdl,
-                 geom="pointrange") +
+  stat_summary(
+    fun.data = mean_sdl,
+    geom = "pointrange"
+  ) +
   labs(title = "Acuity Levels and Age distribution") +
   scale_color_manual(values = c("#8352A5", "#CF98C8", "#7FC9BA", "#F3828C", "#6694B6")) +
   scale_fill_manual(values = c("#8352A5", "#CF98C8", "#7FC9BA", "#F3828C", "#6694B6")) +
   theme_light() +
-  theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank())
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank()
+  )
 
 ggsave("results/metadata_overview_acuity_age.png")
-

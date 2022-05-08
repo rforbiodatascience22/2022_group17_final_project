@@ -76,9 +76,9 @@ mutate(COVID = factor(COVID), Acuity = factor(Acuity))
 
 # remove base r
 heatmap_labels <- ComplexHeatmap::HeatmapAnnotation(
-  "Covid" = label_df$COVID,
-  "Age" = label_df$Age,
-  "Severity" = label_df$Acuity,
+  "Covid" = pull(label_df, COVID),
+  "Age" = pull(lable_df, Age),
+  "Severity" = pull(label_df, Acuity),
   col = list(
     "Covid" = c("COVID -" = "#CF98C8", "COVID +" = "#7FC9BA"),
     "Age" = c("20-34" = "white", "36-49" = "lightblue", "50-64" = "blue", "65-79" = "darkblue", "80+" = "black")
