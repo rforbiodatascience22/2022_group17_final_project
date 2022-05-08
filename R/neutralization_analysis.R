@@ -34,24 +34,6 @@ scat7 <- ggplot(data=neut_d7, aes(x=COVID, y=Percent.Neutralization)) + geom_poi
 scat7
 
 
-Acuity_df <- total %>%
-  mutate(Severity = case_when(
-    Acuity_max == 1 ~ "Severe",
-    Acuity_max == 2 ~ "Severe",
-    Acuity_max == 3 ~ "Non - Severe",
-    Acuity_max == 4 ~ "Non - Severe",
-    Acuity_max == 5 ~ "Non - Severe"
-  ))
-
-#Comparing severe and non severe patients and theirs neutralisation level
-Acuity_df <- Acuity_df %>% mutate(Acuity_max = case_when(
-   Acuity_max == 1 ~ "Death",
-   Acuity_max == 2 ~ "Intubated",
-   Acuity_max == 3 ~ "Hospitalized, supplementary O2",
-   Acuity_max == 4 ~ "Hospitalized,  no supplementary O2",
-   Acuity_max == 5 ~ "No Hospialziation"
- ))
-
 Acuity_p <- ggplot(data = Acuity_df, mapping=aes(x=COVID, y=Percent.Neutralization, fill=Acuity_max)) + geom_boxplot()+
   theme(legend.position = "bottom") + labs(title = "Neutralisation level in patients", subtitle = "Comparison of neutralisation in case of different hospitalisation levels") +
   ylab('Neutralisation level [%]') + 
@@ -91,9 +73,6 @@ neut_severe <- ggplot(data = severe_df , mapping = aes(x = Day, fill = Neutralis
         axis.ticks.y=element_blank(),
         legend.position = "none"
   )
-
-
-
 neut_non_severe <- ggplot(data = severe_df , mapping=aes(x = Day, fill = Neutralisation)) + 
   geom_bar(position = 'stack') +
   theme_dark() +
