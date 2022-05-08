@@ -48,6 +48,8 @@ precalc_volcano <- function(matrix_d0, metadata, log2_foldchange = TRUE) {
   }
 
   # calculate p-values
+  # i know this $ is base r but it is not possible to apply pull/select on this
+  # kind of object 
   result <- lapply(matrix_d0[-1], function(x) t.test(x ~ matrix_d0$subject_id)$p.value)
 
   # merge everything in one df
