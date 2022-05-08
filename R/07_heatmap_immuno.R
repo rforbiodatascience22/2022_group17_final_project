@@ -69,9 +69,9 @@ label_df <- metadata %>%
     Acuity_max == 3 ~ "Hospitalized, supplementary O2",
     Acuity_max == 4 ~ "Hospitalized,  no supplementary O2",
     Acuity_max == 5 ~ "No Hospialziation"
-  ))
-# mutate to factor for color plotting
-mutate(COVID = factor(COVID), Acuity = factor(Acuity))
+  )) %>%
+  # mutate to factor for color plotting
+  mutate(COVID = factor(COVID), Acuity = factor(Acuity))
 
 
 # remove base r
