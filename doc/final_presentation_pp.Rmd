@@ -24,7 +24,11 @@ Proteomics (Olink Assay)
 
 * Study Population (Bar plot & Violin plot)
 
-* Modeling (PCA, Volcano plot & Heatmap)
+* Volcano Plot
+
+* Inflammatory Biomarkers
+
+* Neutralization levels in Individuals
 
 
 
@@ -76,6 +80,12 @@ knitr::include_graphics("../results/metadata_overview_covid.png")
 knitr::include_graphics("../results/metadata_overview_acuity_age.png")
 ```
 
+## Study Population
+
+```{r}
+knitr::include_graphics("../results/lung_disease_occurences.png")
+knitr::include_graphics("../results/heart_disease_occurences.png")
+```
 
 ## Volcano Plot
 
@@ -96,12 +106,6 @@ knitr::include_graphics("../results/volcano_plot.png")
 knitr::include_graphics("../results/boxplot_inflammatory_markers.png")
 ```
 
-## Clustering PCA
-
-```{r}
-knitr::include_graphics("../results/pca_covid.png")
-knitr::include_graphics("../results/pca_age.png")
-```
 
 ## Heatmap
 
@@ -112,4 +116,36 @@ knitr::include_graphics("../results/pca_age.png")
 #| include = TRUE
 knitr::include_graphics("../results/heatmap_inflammation_panel.png") 
 ```
+
+## Virus Neutralization for COVID + and COVID - patients
+
+```{r}
+knitr::include_graphics("../results/neutralisationlvl_covid0.png")
+knitr::include_graphics("../results/neutralisationlvl_covid3.png")
+knitr::include_graphics("../results/neutralisationlvl_covid7.png")
+```
+
+
+## Comparison of virus neutralization level in severe and non-severe patients
+
+```{r}
+knitr::include_graphics("../results/neutralisationlvl_propoirtions.png")
+knitr::include_graphics("../results/neutralisationsevere_nonsevere.png")
+```
+
+## Neutralization level in patients
+
+```{r}
+knitr::include_graphics("../results/neutralisationlvl_propoirtions.png")
+knitr::include_graphics("../results/neutralisationsevere_nonsevere.png")
+```
+
+## Clustering PCA
+
+```{r}
+#| out.width = '105%', 
+knitr::include_graphics("../results/pca_narong.png")
+```
+
+## Discussion
 
